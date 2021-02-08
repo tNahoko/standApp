@@ -1,0 +1,27 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Solo MVP Project - This was created during my time as a student at Code Chrysalis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tNahoko/todo-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tNahoko/todo-app/issues"
+  },
+  "homepage": "https://github.com/tNahoko/todo-app#readme",
+  "dependencies": {
+    "knex": "^0.21.17",
+    "postgres": "^1.0.2",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
+  }
+}
