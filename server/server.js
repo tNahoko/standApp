@@ -6,6 +6,8 @@ const db = require("./knex");
 
 const PORT = process.env.PORT || 9000;
 
+app.use(express.static(__dirname + "/public"));
+
 (async () => {
   try {
     // console.log("Running migrations...");
@@ -18,8 +20,6 @@ const PORT = process.env.PORT || 9000;
     app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}`);
     });
-
-    app.use(express.static(__dirname + "/public"));
 
   } catch (err) {
     console.error("Error starting app!", err);
