@@ -1,4 +1,6 @@
+require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const app = express();
 const db = require("./knex");
 
@@ -16,6 +18,9 @@ const PORT = process.env.PORT || 9000;
     app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}`);
     });
+
+    app.use(express.static(__dirname + "/public"));
+
   } catch (err) {
     console.error("Error starting app!", err);
     process.exit(-1);
