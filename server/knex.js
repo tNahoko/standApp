@@ -9,9 +9,6 @@ const config = {
     ssl: process.env.HAS_SSL ? { rejectUnauthorized: false } : undefined,
   },
   searchPath: "public",
-  migrations: {
-    tableName: 'knex_migrations'
-  }
 };
 
 const db = knex(config);

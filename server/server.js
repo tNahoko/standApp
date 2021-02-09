@@ -6,7 +6,11 @@ const db = require("./knex");
 
 const PORT = process.env.PORT || 9000;
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static('public'));
+app.use(express.static(path.resolve(__dirname, "..", "dist")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
+  });
 
 (async () => {
   try {
