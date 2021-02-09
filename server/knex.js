@@ -9,6 +9,12 @@ const config = {
     ssl: process.env.HAS_SSL ? { rejectUnauthorized: false } : undefined,
   },
   searchPath: "public",
+  migrations: {
+    directory: __dirname + '/db/migrations',
+  },
+  seeds: {
+    directory: __dirname + '/db/seeds'
+  }
 };
 
 const db = knex(config);
