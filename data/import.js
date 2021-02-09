@@ -1,9 +1,9 @@
 const fs = require("fs");
-const db = require("../../knex");
+const db = require("../server/knex");
 
 const seedList = async () => {
   try {
-    const list = JSON.parse(fs.readFileSync("./db/list.json"));
+    const list = JSON.parse(fs.readFileSync("./data/list.json"));
     for (const item of list) {
       const id = item.id;
       const date = item.date;

@@ -1,8 +1,8 @@
-const seedList = require("./import.js");
+const seedList = require("../../../data/import.js");
 
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex("list")
+  return knex('list')
     .truncate()
     .then(function () {
       // Inserts seed entries
