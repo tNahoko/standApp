@@ -7,7 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node -r dotenv/config server/server.js",
-    "dev": "nodemon -r dotenv/config server/server.js"
+    "dev": "nodemon -r dotenv/config server/server.js",
+    "seed": "knex seed:make",
+    "migrate": "knex migrate:make"
   },
   "repository": {
     "type": "git",
