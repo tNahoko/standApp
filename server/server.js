@@ -14,11 +14,11 @@ app.use(express.static('public'));
 
 (async () => {
   try {
-    // console.log("Running migrations...");
-    // await db.migrate.latest();
+    console.log("Running migrations...");
+    await db.migrate.latest();
 
-    // console.log("Running seeds...");
-    // await db.seed.run();
+    console.log("Running seeds...");
+    await db.seed.run();
 
     console.log("Starting express...");
     app.listen(PORT, () => {
