@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const db = require("./knex");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 9000;
 
@@ -12,6 +13,7 @@ app.use(express.json());
 // app.get("*", (req, res) => {
 //     res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
 //   });
+app.use(cors());
 
 app.get("/api/alldata", async (req, res) => {
   const data = await db.select().table("list");
