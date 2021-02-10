@@ -7,10 +7,17 @@ const db = require("./knex");
 const PORT = process.env.PORT || 9000;
 
 app.use(express.static('public'));
+app.use(express.json());
 // app.use(express.static(path.resolve(__dirname, "..", "dist")));
 // app.get("*", (req, res) => {
 //     res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
 //   });
+
+app.get("/api/alldata", async (req, res) => {
+  const data = await db.select().table("list");
+  res.status(200);
+  res.send(data);
+});
 
 (async () => {
   try {
