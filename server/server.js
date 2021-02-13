@@ -29,12 +29,14 @@ app.post("/api", async (req, res) => {
   }
 
   try {
+    
     const newItem = {
       date: req.body.date,
       desc: req.body.desc,
       status: "pending"
     };
-    await db('list').insert(newItem);
+    
+    const addedItem = await db('list').insert(newItem);
     const data = await db.select().table("list");
     res.status(200);
     res.json(data);
@@ -43,8 +45,8 @@ app.post("/api", async (req, res) => {
   }
 });
 
-  app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-  });
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
 
 
