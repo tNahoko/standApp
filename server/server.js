@@ -20,9 +20,7 @@ app.get("/api", async (req, res) => {
 });
 
 app.post("/api", async (req, res) => {
-  console.log("welcome")
   if(!req.body.date || !req.body.desc) {
-    console.log("OOOps")
     res.status(400).send({
       message: "Both date and description are required."
     });
@@ -30,14 +28,12 @@ app.post("/api", async (req, res) => {
   }
 
   try {
-    console.log("Hello")
     const newItem = {
       date: req.body.date,
       desc: req.body.desc,
       status: "pending"
     };
-    const addedItem = await db('list').insert(newItem);
-    console.log(addedItem)
+    await db('list').insert(newItem);
     const data = await db.select().table("list");
     res.status(200);
     res.json(data);
