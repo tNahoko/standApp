@@ -29,7 +29,6 @@ app.post("/api", async (req, res) => {
   }
 
   try {
-    
     const newItem = {
       date: req.body.date,
       desc: req.body.desc,
@@ -37,7 +36,6 @@ app.post("/api", async (req, res) => {
     };
     await db('list').insert(newItem);
     const data = await db.select().table("list");
-    console.log(data)
     res.status(200);
     res.json(data);
   } catch (error) {
@@ -45,23 +43,8 @@ app.post("/api", async (req, res) => {
   }
 });
 
-(async () => {
-  try {
-    console.log("Running migrations...");
-    await db.migrate.latest();
-
-    console.log("Running seeds...");
-    await db.seed.run();
-
-    console.log("Starting express...");
-    app.listen(PORT, () => {
-      console.log(`App listening on port ${PORT}`);
-    });
-
-  } catch (err) {
-    console.error("Error starting app!", err);
-    process.exit(-1);
-  }
-})();
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
+  });
 
 
