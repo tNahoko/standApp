@@ -1,34 +1,61 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+
 const app = express();
 const db = require("./knex");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 9000;
 
 app.use(express.static('public'));
-// app.use(express.static(path.resolve(__dirname, "..", "dist")));
-// app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
-//   });
+app.use(express.json());
 
-(async () => {
-  try {
-    console.log("Running migrations...");
-    await db.migrate.latest();
+app.use(cors());
 
-    console.log("Running seeds...");
-    await db.seed.run();
+app.get("/api", async (req, res) => {
+  const data = await db.select().table("list");
+  res.status(200);
+  res.json(data);
+});
 
-    console.log("Starting express...");
-    app.listen(PORT, () => {
-      console.log(`App listening on port ${PORT}`);
+app.post("/api", async (req, res) => {
+  if(!req.body.date || !req.body.desc) {
+    res.status(400).send({
+      message: "Both date and description are required."
     });
-
-  } catch (err) {
-    console.error("Error starting app!", err);
-    process.exit(-1);
+    return;
   }
-})();
+
+  try {
+    const newItem = {
+      date: req.body.date,
+      desc: req.body.desc,
+      status: "pending"
+    };
+    await db('list').insert(newItem);
+    const data = await db.select().table("list");
+    res.status(200);
+    res.json(data);
+  } catch (error) {
+    res.sendStatus(400);
+  }
+});
+
+app.patch("/api/done/:id", async (req, res) => {
+  console.log("Enter!")
+  try {
+    await db('list').where({id: req.params.id}).update({status: "done"});
+    const data = await db.select().table("list");
+    res.status(200);
+    res.json(data);
+  } catch (error) {
+    res.sendStatus(400);
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
 
 

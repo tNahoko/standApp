@@ -7,9 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node -r dotenv/config server/server.js",
-    "dev": "nodemon -r dotenv/config server/server.js",
-    "seed": "knex seed:make",
-    "migrate": "knex migrate:make"
+    "dev": "nodemon -r dotenv/config server/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +21,7 @@
   "homepage": "https://github.com/tNahoko/todo-app#readme",
   "dependencies": {
     "apollo-server-express": "^2.19.2",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.21.17",
