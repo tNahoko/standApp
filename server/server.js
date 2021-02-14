@@ -43,9 +43,19 @@ app.post("/api", async (req, res) => {
 });
 
 app.patch("/api/done/:id", async (req, res) => {
-  console.log("Enter!")
   try {
     await db('list').where({id: req.params.id}).update({status: "done"});
+    const data = await db.select().table("list");
+    res.status(200);
+    res.json(data);
+  } catch (error) {
+    res.sendStatus(400);
+  }
+});
+
+app.delete("/api/:id", async (req, res) => {
+  try {
+    await db('list').where({id: req.params.id}).del();
     const data = await db.select().table("list");
     res.status(200);
     res.json(data);
